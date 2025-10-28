@@ -1,8 +1,5 @@
-// Fix: Switched to firebase/compat/app to resolve the 'initializeApp' export error.
-// This allows for initialization using the v8 syntax, which is more robust against
-// certain build tool or dependency issues, while the rest of the app can still
-// leverage the v9 modular functions.
-import firebase from 'firebase/compat/app';
+// FIX: Changed import to handle potential module resolution issues. The original `import { initializeApp }...` was causing an error.
+import * as firebase from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
