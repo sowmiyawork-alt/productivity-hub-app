@@ -1,5 +1,5 @@
-// FIX: Changed import to handle potential module resolution issues. The original `import { initializeApp }...` was causing an error.
-import * as firebase from "firebase/app";
+// Fix: Changed import to a namespace import to address potential module resolution issues.
+import * as firebaseApp from "firebase/app";
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
@@ -21,7 +21,7 @@ if (!firebaseConfig.apiKey || !firebaseConfig.projectId) {
 }
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+const app = firebaseApp.initializeApp(firebaseConfig);
 
 // Initialize Firebase services
 const auth = getAuth(app);
