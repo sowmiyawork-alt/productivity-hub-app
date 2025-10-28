@@ -1,7 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { WordOfTheDayType } from "../types";
 
-// FIX: Updated to use process.env.API_KEY directly for GoogleGenAI initialization as per the coding guidelines.
+// Fix: Aligned with @google/genai coding guidelines by using process.env.API_KEY directly.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 const model = "gemini-2.5-flash";
 
@@ -11,8 +11,7 @@ export const getMotivationalMessage = async (): Promise<string> => {
             model,
             contents: "Give me a short, powerful motivational message for someone managing their daily tasks. It should be one sentence."
         });
-        // FIX: Added a defensive check for the response text.
-        const text = (response.text || '').trim();
+        const text = response.text.trim();
         // Remove quotes if they exist
         return text.replace(/^"|"$/g, '');
     } catch (error) {
@@ -51,8 +50,7 @@ export const getWordOfTheDay = async (): Promise<WordOfTheDayType> => {
             }
         });
 
-        // FIX: Added a defensive check for the response text before parsing.
-        const jsonStr = response.text?.trim();
+        const jsonStr = response.text.trim();
         if (!jsonStr) {
           throw new Error("Received empty response from Gemini API for word of the day.");
         }
